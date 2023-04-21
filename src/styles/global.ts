@@ -25,6 +25,8 @@ export const globalStyles = globalCss({
     lineHeight: '1.5',
     backgroundColor: '$black500',
     fontFamily: 'Montserrat, sans-serif',
-    color: '$white',
+    color: '$white200',
+    display: 'grid',
+    placeContent: 'center',
   },
 })
