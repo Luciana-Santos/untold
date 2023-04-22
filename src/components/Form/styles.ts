@@ -2,17 +2,17 @@ import { styled } from '@/styles/stitches.config'
 
 export const FormContainer = styled('form', {
   display: 'grid',
-  gap: '$5',
+  gap: '$4',
 })
 
 export const Fieldset = styled('fieldset', {
   border: 'none',
-  display: 'grid',
-  gap: '$2',
 })
 
 export const LabelStyled = styled('label', {
   color: '$gray200',
+  display: 'grid',
+  gap: '$1',
 })
 
 export const InputItem = styled('input', {
