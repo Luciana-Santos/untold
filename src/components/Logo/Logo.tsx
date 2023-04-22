@@ -8,8 +8,8 @@ const Logo = () => {
         <Image
           src="/images/logo.svg"
           alt="Talk balloon with two dots."
-          width={50}
-          height={50}
+          width={25}
+          height={25}
         />
       </LogoIcon>
 

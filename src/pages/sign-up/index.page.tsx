@@ -10,6 +10,7 @@ const SignUp = () => {
         <Form.Field>
           <Form.Label>Username:</Form.Label>
           <Form.Input type="text" />
+          {/* <Form.ErrorMessage>Enter a valid email.</Form.ErrorMessage> */}
         </Form.Field>
 
         <Form.Field>
@@ -21,11 +22,13 @@ const SignUp = () => {
         <Form.Field>
           <Form.Label>Password:</Form.Label>
           <Form.Input type="password" />
+          {/* <Form.ErrorMessage>Enter a valid email.</Form.ErrorMessage> */}
         </Form.Field>
 
         <Form.Field>
           <Form.Label>Password confirmation:</Form.Label>
           <Form.Input type="password" />
+          {/* <Form.ErrorMessage>Enter a valid email.</Form.ErrorMessage> */}
         </Form.Field>
 
         <ButtonContainer>

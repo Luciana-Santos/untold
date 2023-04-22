@@ -17,7 +17,7 @@ export const LabelStyled = styled('label', {
 
 export const InputItem = styled('input', {
   background: '$gray600',
-  border: '4px solid transparent',
+  border: '3px solid transparent',
   fontSize: '$md',
   padding: '$2',
   borderRadius: 4,

@@ -10,9 +10,15 @@ export const Button = styled('button', {
   textTransform: 'uppercase',
   letterSpacing: '0.04em',
 
-  '&:focus, &:hover': {
+  '&:focus, &:not(:disabled):hover': {
     boxShadow: '4px 4px hsla(0,0%,100%,.1)',
     opacity: 0.85,
+  },
+
+  '&:disabled': {
+    backgroundColor: '#6c7393',
+    color: '$black800',
+    cursor: 'not-allowed',
   },
 
   variants: {

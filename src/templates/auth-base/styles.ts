@@ -12,7 +12,7 @@ export const MainContainer = styled('main', {
   background: '$black800',
   display: 'grid',
   gap: '$10',
-  paddingBlock: '$16',
+  paddingBlock: '$10',
   paddingInline: 'clamp($6, 4vw, $16)',
   borderRadius: 6,
 })
