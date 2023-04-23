@@ -1,6 +1,7 @@
 import { Form } from '@/components/Form'
 import { ButtonContainer, FormContainer } from '@/components/Form/styles'
 import { Button } from '@/components/UI/Button'
+import { useAuth } from '@/context/AuthContext'
 import AuthBase from '@/templates/auth-base/auth-base'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -49,12 +50,22 @@ const createUserSchema = z
 type CreateUserData = z.infer<typeof createUserSchema>
 
 const SignUp = () => {
+  const { user, signUp } = useAuth()
+
+  console.log(user)
+
   const createUserForm = useForm<CreateUserData>({
     resolver: zodResolver(createUserSchema),
   })
 
-  const createUser = (data: CreateUserData) => {
+  const handleCreateUser = async (data: CreateUserData) => {
     console.log(data)
+
+    try {
+      await signUp(data.email, data.password)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   const {
@@ -65,7 +76,7 @@ const SignUp = () => {
   return (
     <AuthBase>
       <FormProvider {...createUserForm}>
-        <FormContainer onSubmit={handleSubmit(createUser)}>
+        <FormContainer onSubmit={handleSubmit(handleCreateUser)}>
           <Form.Field>
             <Form.Label>
               Username: <Form.Input type="text" name="username" />

@@ -1,8 +1,10 @@
 import { Form } from '@/components/Form'
 import { ButtonContainer, FormContainer } from '@/components/Form/styles'
 import { Button } from '@/components/UI/Button'
+import { useAuth } from '@/context/AuthContext'
 import AuthBase from '@/templates/auth-base/auth-base'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/router'
 import { FormProvider, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -29,12 +31,22 @@ const accessUserSchema = z.object({
 type AccessUserData = z.infer<typeof accessUserSchema>
 
 const SignIn = () => {
+  const { user, signIn } = useAuth()
+  const router = useRouter()
+
   const accessUserForm = useForm<AccessUserData>({
     resolver: zodResolver(accessUserSchema),
   })
 
-  const accessUser = (data: AccessUserData) => {
+  const handleUserAcess = async (data: AccessUserData) => {
     console.log(data)
+
+    try {
+      await signIn(data.email, data.password)
+      router.push('/chat')
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   const {
@@ -45,7 +57,7 @@ const SignIn = () => {
   return (
     <AuthBase>
       <FormProvider {...accessUserForm}>
-        <FormContainer onSubmit={handleSubmit(accessUser)}>
+        <FormContainer onSubmit={handleSubmit(handleUserAcess)}>
           <Form.Field>
             <Form.Label>
               Email: <Form.Input type="email" name="email" />
