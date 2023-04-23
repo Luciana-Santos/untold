@@ -43,7 +43,7 @@ const SignIn = () => {
 
     try {
       await signIn(data.email, data.password)
-      router.push('/chat')
+      router.push('/')
     } catch (err) {
       console.log(err)
     }

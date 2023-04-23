@@ -4,6 +4,7 @@ import { Button } from '@/components/UI/Button'
 import { useAuth } from '@/context/AuthContext'
 import AuthBase from '@/templates/auth-base/auth-base'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/router'
 import { FormProvider, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -51,6 +52,7 @@ type CreateUserData = z.infer<typeof createUserSchema>
 
 const SignUp = () => {
   const { user, signUp } = useAuth()
+  const router = useRouter()
 
   console.log(user)
 
@@ -63,6 +65,7 @@ const SignUp = () => {
 
     try {
       await signUp(data.email, data.password)
+      router.push('/')
     } catch (err) {
       console.log(err)
     }

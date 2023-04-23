@@ -1,4 +1,3 @@
-import ProtectedRoute from '@/components/ProtectedRoute'
 import AuthContextProvider from '@/context/AuthContext'
 import { globalStyles } from '@/styles/global'
 import type { AppProps } from 'next/app'
@@ -13,13 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <AuthContextProvider>
-      {noAuthRequired.includes(router.pathname) ? (
-        <Component {...pageProps} />
-      ) : (
-        <ProtectedRoute>
-          <Component {...pageProps} />
-        </ProtectedRoute>
-      )}
+      <Component {...pageProps} />
     </AuthContextProvider>
   )
 }
