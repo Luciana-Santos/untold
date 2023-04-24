@@ -39,7 +39,7 @@ type ChangePasswordData = z.infer<typeof changePasswordSchema>
 const PasswordReset = () => {
   const { passwordReset } = useAuth()
   const [error, setError] = useState('')
-  const [success, setSuccess] = useState(true)
+  const [success, setSuccess] = useState(false)
 
   const changePasswordForm = useForm<ChangePasswordData>({
     resolver: zodResolver(changePasswordSchema),
