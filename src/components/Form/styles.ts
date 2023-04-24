@@ -41,3 +41,7 @@ export const ButtonContainer = styled('div', {
   justifyContent: 'space-between',
   marginTop: '$4',
 })
+
+export const AuthMessageStyled = styled(MessageStyled, {
+  fontSize: '$sm',
+})

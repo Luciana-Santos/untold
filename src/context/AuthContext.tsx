@@ -1,7 +1,9 @@
 import { auth } from '@/libs/firebase'
 import {
+  UserCredential,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth'
@@ -14,10 +16,11 @@ interface User {
 }
 
 interface AuthContextProps {
-  user: User | undefined
-  signIn: (email: string, password: string) => Promise<any>
-  signUp: (email: string, password: string) => Promise<any>
+  user: User | null
+  signIn: (email: string, password: string) => Promise<UserCredential>
+  signUp: (email: string, password: string) => Promise<UserCredential>
   signUserOut: () => Promise<void>
+  passwordReset: (email: string) => Promise<void>
 }
 
 export const AuthContext = createContext({} as AuthContextProps)
@@ -27,7 +30,7 @@ type ChildrenProps = {
 }
 
 const AuthContextProvider = ({ children }: ChildrenProps) => {
-  const [user, setUser] = useState<User | undefined>(undefined)
+  const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -39,7 +42,7 @@ const AuthContextProvider = ({ children }: ChildrenProps) => {
           displayName: user.displayName ?? undefined,
         })
       } else {
-        setUser(undefined)
+        setUser(null)
       }
       setLoading(false)
     })
@@ -58,12 +61,18 @@ const AuthContextProvider = ({ children }: ChildrenProps) => {
   }
 
   const signUserOut = async () => {
-    setUser(undefined)
+    setUser(null)
     await signOut(auth)
   }
 
+  const passwordReset = async (email: string) => {
+    await sendPasswordResetEmail(auth, email)
+  }
+
   return (
-    <AuthContext.Provider value={{ user, signIn, signUp, signUserOut }}>
+    <AuthContext.Provider
+      value={{ user, signIn, signUp, signUserOut, passwordReset }}
+    >
       {loading ? null : children}
     </AuthContext.Provider>
   )
