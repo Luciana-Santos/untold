@@ -1,5 +1,6 @@
 import { Form } from '@/components/Form'
 import {
+  AuthMessageStyled,
   ButtonContainer,
   FormContainer,
   InternLink,
@@ -96,6 +97,7 @@ const SignIn = () => {
             </Button>
           </ButtonContainer>
         </FormContainer>
+        {error && <AuthMessageStyled>{error}</AuthMessageStyled>}
       </FormProvider>
     </AuthBase>
   )

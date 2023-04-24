@@ -1,10 +1,17 @@
 import { Form } from '@/components/Form'
-import { ButtonContainer, FormContainer } from '@/components/Form/styles'
+import {
+  AuthMessageStyled,
+  ButtonContainer,
+  FormContainer,
+} from '@/components/Form/styles'
 import { Button } from '@/components/UI/Button'
 import { useAuth } from '@/context/AuthContext'
 import AuthBase from '@/templates/auth-base/auth-base'
+import { handleFirebaseError } from '@/utils/handleFirebaseError'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { FirebaseError } from 'firebase/app'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -54,6 +61,7 @@ type CreateUserData = z.infer<typeof createUserSchema>
 const SignUp = () => {
   const { user, signUp } = useAuth()
   const router = useRouter()
+  const [error, setError] = useState('')
 
   console.log(user)
 
@@ -69,6 +77,9 @@ const SignUp = () => {
       router.push('/')
     } catch (err) {
       console.log(err)
+      if (err instanceof FirebaseError) {
+        setError(handleFirebaseError(err))
+      }
     }
   }
 
@@ -107,7 +118,7 @@ const SignUp = () => {
 
           <Form.Field>
             <Form.Label>
-              Password confirmation:{' '}
+              Password confirmation:
               <Form.Input type="password" name="passwordConfirm" />
             </Form.Label>
 
@@ -123,6 +134,7 @@ const SignUp = () => {
             </Button>
           </ButtonContainer>
         </FormContainer>
+        {error && <AuthMessageStyled>{error}</AuthMessageStyled>}
       </FormProvider>
     </AuthBase>
   )
