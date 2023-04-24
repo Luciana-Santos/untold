@@ -1,10 +1,9 @@
 import { Form } from '@/components/Form'
 import {
-  AuthMessageStyled,
   ButtonContainer,
   FormContainer,
+  InternLink,
 } from '@/components/Form/styles'
-import Modal, { ModalRoot, ModalTrigger } from '@/components/Modal/Modal'
 import { Button } from '@/components/UI/Button'
 import { useAuth } from '@/context/AuthContext'
 import AuthBase from '@/templates/auth-base/auth-base'
@@ -25,7 +24,8 @@ const accessUserSchema = z.object({
     .email({
       message: 'Invalid email format.',
     })
-    .toLowerCase(),
+    .toLowerCase()
+    .trim(),
   password: z
     .string()
     .nonempty({
@@ -42,7 +42,6 @@ const SignIn = () => {
   const { signIn } = useAuth()
   const router = useRouter()
   const [error, setError] = useState('')
-  const [isModalOpen, setisModalOpen] = useState(false)
 
   const accessUserForm = useForm<AccessUserData>({
     resolver: zodResolver(accessUserSchema),
@@ -66,17 +65,13 @@ const SignIn = () => {
     formState: { isSubmitting },
   } = accessUserForm
 
-  const handleModal = () => {
-    setisModalOpen((prev) => !prev)
-  }
-
   return (
     <AuthBase>
       <FormProvider {...accessUserForm}>
         <FormContainer onSubmit={handleSubmit(handleUserAcess)}>
           <Form.Field>
             <Form.Label>
-              Email: <Form.Input type="email" name="email" />
+              E-mail: <Form.Input type="email" name="email" />
             </Form.Label>
 
             <Form.ErrorMessage field="email" />
@@ -90,12 +85,7 @@ const SignIn = () => {
             <Form.ErrorMessage field="password" />
           </Form.Field>
 
-          <ModalRoot>
-            <ModalTrigger>
-              <button onClick={handleModal}>Forgot password?</button>
-            </ModalTrigger>
-            {isModalOpen && <Modal>modal</Modal>}
-          </ModalRoot>
+          <InternLink href="/password-reset">Forgot password?</InternLink>
 
           <ButtonContainer>
             <Button type="normal" disabled={isSubmitting}>
@@ -106,7 +96,6 @@ const SignIn = () => {
             </Button>
           </ButtonContainer>
         </FormContainer>
-        {error && <AuthMessageStyled>{error}</AuthMessageStyled>}
       </FormProvider>
     </AuthBase>
   )

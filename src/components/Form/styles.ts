@@ -1,4 +1,5 @@
 import { styled } from '@/styles/stitches.config'
+import Link from 'next/link'
 
 export const FormContainer = styled('form', {
   display: 'grid',
@@ -21,7 +22,7 @@ export const InputItem = styled('input', {
   fontSize: '$md',
   padding: '$2',
   borderRadius: 4,
-  transition: 'all .3s ease-in-out',
+  transition: 'all .3s ease-out',
   color: '$white200',
 
   '&:focus, &:hover': {
@@ -44,4 +45,13 @@ export const ButtonContainer = styled('div', {
 
 export const AuthMessageStyled = styled(MessageStyled, {
   fontSize: '$sm',
+})
+
+export const InternLink = styled(Link, {
+  color: '$accent',
+  fontSize: '$xs',
+  maxWidth: 'max-content',
+  paddingBlock: '$1',
+  transition: 'all .3s ease-out',
+  borderBottom: '1px solid transparent',
 })

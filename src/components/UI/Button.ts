@@ -9,6 +9,7 @@ export const Button = styled('button', {
   borderRadius: 6,
   textTransform: 'uppercase',
   letterSpacing: '0.04em',
+  fontSize: '$sm',
 
   '&:focus, &:not(:disabled):hover': {
     boxShadow: '4px 4px hsla(0,0%,100%,.1)',

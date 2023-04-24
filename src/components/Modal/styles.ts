@@ -46,22 +46,38 @@ export const ModalContent = styled(Dialog.Content, {
   },
 })
 
+export const ModalTitle = styled(Dialog.Title, {})
+
+export const ModalDescription = styled(Dialog.Description, {})
+
 export const CloseButton = styled(Dialog.Close, {
-  borderRadius: '100%',
-  height: 25,
-  width: 25,
-  display: 'inline-flex',
-  placeItems: 'center',
-  color: '$gray400',
+  all: 'unset',
+  borderRadius: 6,
+  padding: 4,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  color: '$gray200',
   position: 'absolute',
   top: 10,
   right: 10,
+  cursor: 'pointer',
+  transition: 'all .3s ease-out',
 
   '&:hover': {
-    backgroundColor: '$accent',
+    background: '$black800',
+    color: '$white',
   },
 
   '&:focus': {
     boxShadow: '0 0 0 2px $accent',
   },
+})
+
+export const OpenModalButton = styled('button', {
+  all: 'unset',
+  cursor: 'pointer',
+  fontSize: '$xs',
+  color: '$accent',
+  maxWidth: 'max-content',
 })

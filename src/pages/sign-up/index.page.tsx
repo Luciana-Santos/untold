@@ -25,7 +25,8 @@ const createUserSchema = z
       .email({
         message: 'Invalid email format.',
       })
-      .toLowerCase(),
+      .toLowerCase()
+      .trim(),
     password: z
       .string()
       .nonempty({
@@ -90,7 +91,7 @@ const SignUp = () => {
 
           <Form.Field>
             <Form.Label>
-              Email: <Form.Input type="email" name="email" />
+              E-mail: <Form.Input type="email" name="email" />
             </Form.Label>
 
             <Form.ErrorMessage field="email" />
