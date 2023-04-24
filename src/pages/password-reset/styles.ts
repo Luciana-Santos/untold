@@ -1,5 +1,5 @@
 import { styled } from '@/styles/stitches.config'
-import { CheckIcon } from '@radix-ui/react-icons'
+import { CheckFat } from '@phosphor-icons/react'
 
 export const Title = styled('h4', {
   fontSize: '$xl',
@@ -21,10 +21,10 @@ export const SucessMessageContainer = styled('div', {
   justifyItems: 'center',
 })
 
-export const SuccessIcon = styled(CheckIcon, {
+export const SuccessIcon = styled(CheckFat, {
   color: '$accent',
-  width: 40,
-  height: 40,
+  width: 30,
+  height: 30,
 })
 
 export const SuccessMessage = styled('p', {})

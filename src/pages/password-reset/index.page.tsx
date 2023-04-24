@@ -39,7 +39,7 @@ type ChangePasswordData = z.infer<typeof changePasswordSchema>
 const PasswordReset = () => {
   const { passwordReset } = useAuth()
   const [error, setError] = useState('')
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState(true)
 
   const changePasswordForm = useForm<ChangePasswordData>({
     resolver: zodResolver(changePasswordSchema),
@@ -65,7 +65,7 @@ const PasswordReset = () => {
 
   const SuccessComponent = (
     <SucessMessageContainer>
-      <SuccessIcon />
+      <SuccessIcon weight="fill" />
       <SuccessMessage>Check your e-mail!</SuccessMessage>
       <InternLink href="/sign-in">Back to sign in</InternLink>
     </SucessMessageContainer>
