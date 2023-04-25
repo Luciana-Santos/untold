@@ -20,6 +20,11 @@ export const globalStyles = globalCss({
     listStyle: 'none',
   },
 
+  img: {
+    maxWidth: '100%',
+    display: 'block',
+  },
+
   body: {
     minHeight: '100vh',
     lineHeight: '1.5',
